@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- جزئیات پیام -->
+<div class="content-card message-detail">
+
+    <!-- عنوان و اطلاعات پیام -->
+    <div class="d-flex flex-wrap justify-content-between gap-3 border-bottom pb-4 mb-4">
+
+        <div>
+
+            <h1 class="h4 fw-bold mb-2">
+                {{ message.subject }}
+            </h1>
+
+            <div class="text-secondary small">
+
+                از
+                <strong>{{ message.sender.username }}</strong>
+
+                به
+                <strong>{{ message.receiver.username }}</strong>
+
+            </div>
+
+        </div>
+
+        <!-- تاریخ ارسال -->
+        <small class="text-secondary">
+            {{ message.created_at | fa_datetime }}
+        </small>
+
+    </div>
+
+    <!-- متن پیام -->
+    <div class="message-body">
+
+        {{ message.body }}
+
+    </div>
+
+    <!-- فایل پیوست -->
+    {% if message.attachment %}
+
+        <div class="attachment-box mt-4">
+
+            <div>
+
+                <strong>
+                    فایل پیوست
+                </strong>
+
+                <br>
+
+                <small class="text-secondary">
+                    {{ message.attachment.original_name }}
+                </small>
+
+            </div>
+
+            <a class="btn btn-outline-primary btn-sm"
+               href="{{ url_for('download_attachment',
+                                attachment_id=message.attachment.id) }}">
+
+                دانلود فایل
+
+            </a>
+
+        </div>
+
+    {% endif %}
+
+    <!-- دکمه بازگشت -->
+    <div class="mt-4">
+
+        <a class="btn btn-light"
+           href="{{ url_for('inbox' if message.receiver_id == session.user_id else 'sent') }}">
+
+            بازگشت
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

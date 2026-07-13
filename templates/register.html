@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- کارت ثبت نام -->
+<div class="auth-card card border-0 shadow-lg">
+
+    <div class="card-body p-4 p-md-5">
+
+        <!-- لوگو -->
+        <div class="brand-mark mb-3">
+            ن
+        </div>
+
+        <!-- عنوان -->
+        <h1 class="h3 fw-bold mb-2">
+            ساخت حساب کاربری
+        </h1>
+
+        <p class="text-secondary mb-4">
+            اطلاعات زیر را کامل وارد کنید.
+        </p>
+
+        <!-- فرم ثبت نام -->
+        <form method="POST" novalidate>
+
+            <!-- نام کاربری -->
+            <div class="mb-3">
+
+                <label class="form-label">
+                    نام کاربری
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    minlength="3"
+                    required>
+
+            </div>
+
+            <!-- ایمیل -->
+            <div class="mb-3">
+
+                <label class="form-label">
+                    ایمیل
+                </label>
+
+                <input
+                    type="email"
+                    class="form-control"
+                    name="email"
+                    required>
+
+            </div>
+
+            <!-- رمز عبور -->
+            <div class="row g-3 mb-4">
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        رمز عبور
+                    </label>
+
+                    <input
+                        type="password"
+                        class="form-control"
+                        name="password"
+                        minlength="6"
+                        required>
+
+                </div>
+
+                <!-- تکرار رمز عبور -->
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        تکرار رمز عبور
+                    </label>
+
+                    <input
+                        type="password"
+                        class="form-control"
+                        name="confirm_password"
+                        minlength="6"
+                        required>
+
+                </div>
+
+            </div>
+
+            <!-- دکمه ثبت نام -->
+            <button
+                type="submit"
+                class="btn btn-primary btn-lg w-100">
+
+                ثبت‌نام
+
+            </button>
+
+        </form>
+
+        <!-- لینک ورود -->
+        <p class="text-center mt-4 mb-0 text-secondary">
+
+            قبلاً ثبت‌نام کرده‌اید؟
+
+            <a href="{{ url_for('login') }}">
+                وارد شوید
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

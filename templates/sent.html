@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- عنوان صفحه -->
+<div class="page-heading d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h1 class="h3 fw-bold mb-1">
+            پیام‌های ارسالی
+        </h1>
+
+        <p class="text-secondary mb-0">
+            پیام‌هایی که شما ارسال کرده‌اید
+        </p>
+
+    </div>
+
+    <a class="btn btn-primary"
+       href="{{ url_for('compose') }}">
+
+        پیام جدید
+
+    </a>
+
+</div>
+
+<!-- لیست پیام‌ها -->
+<div class="content-card p-0 overflow-hidden">
+
+    {% if messages %}
+
+        <div class="message-list">
+
+            {% for message in messages %}
+
+                <a class="message-row px-4 py-3"
+                   href="{{ url_for('message_detail',
+                                    message_id=message.id) }}">
+
+                    <div class="message-main">
+
+                        <span class="sender-name">
+                            به: {{ message.receiver.username }}
+                        </span>
+
+                        <span class="subject-line">
+                            {{ message.subject }}
+                        </span>
+
+                        {% if message.attachment %}
+
+                            <span class="attachment-badge">
+                                پیوست
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                    <small class="text-secondary text-nowrap">
+
+                        {{ message.created_at | fa_datetime }}
+
+                    </small>
+
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-state m-4">
+
+            هنوز پیامی ارسال نکرده‌اید.
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

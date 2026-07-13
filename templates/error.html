@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- صفحه خطا -->
+<div class="content-card text-center py-5">
+
+    <!-- کد خطا -->
+    <div class="error-code">
+        {{ code }}
+    </div>
+
+    <!-- متن خطا -->
+    <h1 class="h4 fw-bold">
+        {{ message }}
+    </h1>
+
+    <!-- دکمه بازگشت -->
+    <a class="btn btn-primary mt-3"
+       href="{{ url_for('dashboard') }}">
+
+        بازگشت به صفحه اصلی
+
+    </a>
+
+</div>
+
+{% endblock %}

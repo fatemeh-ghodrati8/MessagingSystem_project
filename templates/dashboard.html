@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- عنوان صفحه -->
+<div class="page-heading d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+
+    <div>
+
+        <h1 class="h3 fw-bold mb-1">
+            صفحه اصلی
+        </h1>
+
+        <p class="text-secondary mb-0">
+            خلاصه وضعیت پیام‌های شما
+        </p>
+
+    </div>
+
+    <a class="btn btn-primary"
+       href="{{ url_for('compose') }}">
+        + نوشتن پیام جدید
+    </a>
+
+</div>
+
+<!-- کارت‌های آمار -->
+<div class="row g-4 mb-5">
+
+    <!-- تعداد پیام‌های دریافتی -->
+    <div class="col-md-4">
+
+        <div class="stat-card">
+
+            <span class="stat-label">
+                کل دریافتی‌ها
+            </span>
+
+            <strong>
+                {{ inbox_count }}
+            </strong>
+
+            <a href="{{ url_for('inbox') }}">
+                مشاهده صندوق
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- پیام‌های خوانده نشده -->
+    <div class="col-md-4">
+
+        <div class="stat-card">
+
+            <span class="stat-label">
+                خوانده‌نشده
+            </span>
+
+            <strong>
+                {{ unread_count }}
+            </strong>
+
+            <a href="{{ url_for('inbox') }}">
+                بررسی پیام‌ها
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- پیام‌های ارسال شده -->
+    <div class="col-md-4">
+
+        <div class="stat-card">
+
+            <span class="stat-label">
+                ارسال‌شده
+            </span>
+
+            <strong>
+                {{ sent_count }}
+            </strong>
+
+            <a href="{{ url_for('sent') }}">
+                مشاهده ارسالی‌ها
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- آخرین پیام‌ها -->
+<div class="content-card">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <h2 class="h5 fw-bold mb-0">
+            آخرین پیام‌های دریافتی
+        </h2>
+
+        <a href="{{ url_for('inbox') }}">
+            همه پیام‌ها
+        </a>
+
+    </div>
+
+    {% if recent_messages %}
+
+        <div class="message-list">
+
+            {% for message in recent_messages %}
+
+                <a class="message-row {% if not message.is_read %}unread{% endif %}"
+                   href="{{ url_for('message_detail', message_id=message.id) }}">
+
+                    <div>
+
+                        <div class="fw-semibold">
+                            {{ message.subject }}
+                        </div>
+
+                        <small class="text-secondary">
+                            از {{ message.sender.username }}
+                        </small>
+
+                    </div>
+
+                    <small class="text-secondary">
+                        {{ message.created_at | fa_datetime }}
+                    </small>
+
+                </a>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="empty-state">
+            هنوز پیامی دریافت نکرده‌اید.
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

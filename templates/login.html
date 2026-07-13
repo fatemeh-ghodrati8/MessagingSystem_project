@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- کارت ورود -->
+<div class="auth-card card border-0 shadow-lg">
+
+    <div class="card-body p-4 p-md-5">
+
+        <!-- لوگو -->
+        <div class="brand-mark mb-3">
+            ن
+        </div>
+
+        <!-- عنوان -->
+        <h1 class="h3 fw-bold mb-2">
+            ورود به سامانه پیام
+        </h1>
+
+        <p class="text-secondary mb-4">
+            برای مدیریت پیام‌های خود وارد حساب شوید.
+        </p>
+
+        <!-- فرم ورود -->
+        <form method="POST" novalidate>
+
+            <!-- نام کاربری یا ایمیل -->
+            <div class="mb-3">
+
+                <label class="form-label">
+                    نام کاربری یا ایمیل
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    name="identity"
+                    required
+                    autofocus>
+
+            </div>
+
+            <!-- رمز عبور -->
+            <div class="mb-4">
+
+                <label class="form-label">
+                    رمز عبور
+                </label>
+
+                <input
+                    type="password"
+                    class="form-control form-control-lg"
+                    name="password"
+                    required>
+
+            </div>
+
+            <!-- دکمه ورود -->
+            <button
+                type="submit"
+                class="btn btn-primary btn-lg w-100">
+
+                ورود
+
+            </button>
+
+        </form>
+
+        <!-- لینک ثبت نام -->
+        <p class="text-center mt-4 mb-0 text-secondary">
+
+            حساب ندارید؟
+
+            <a href="{{ url_for('register') }}">
+                ثبت‌نام کنید
+            </a>
+
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}
