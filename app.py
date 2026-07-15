@@ -362,6 +362,7 @@ def create_app(test_config=None):
                     "danger"
                 )
 
+
             elif not subject or len(subject) > 150:
                 flash(
                     "موضوع را وارد کنید؛ حداکثر ۱۵۰ کاراکتر.",
