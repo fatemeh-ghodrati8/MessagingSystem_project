@@ -11,6 +11,7 @@ def test_home_redirects_to_login():
             "SECRET_KEY": "test",
             "SQLALCHEMY_DATABASE_URI": f"sqlite:///{database.name}",
         })
+        
         with app.app_context():
             db.create_all()
         client = app.test_client()
