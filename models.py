@@ -11,6 +11,7 @@ def utc_now():
     return datetime.now(timezone.utc)
 
 
+
 class User(db.Model):
     __tablename__ = "users"
 
